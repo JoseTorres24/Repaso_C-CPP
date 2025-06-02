@@ -3,17 +3,17 @@
 #define _CRT_SECURE_NO_WARNINGS
 #include <stdio.h>
 
+//Ejercicio para calcular el área de un triángulo rectángulo
 
-//Ejercicio de interes y capital
 int main() {
-	float dinero = 0.0, interes = 0.0,total = 0.0;
+	float area, base, altura;
+	printf("Introduce la base del triángulo: ");
+	scanf("%f", &base);
+	printf("\nIntroduce la altura del triángulo: ");
+	scanf("%f", &altura);
+	area = (base * altura) / 2;
+	printf("\nUn triangulo rectángulo de altura %.2f y base %.2f, tiene un área de %.2f",altura,base, area);
 
-	printf("\nIntroduce el capital inicial: ");
-	scanf("%f", &dinero);
-	printf("\nRecuerda que pongas el numero del porcentaje que se esta aplicando");
-	printf("\nIntroduce el interes que se esta aplicando: ");
-	scanf("%f", &interes);
-	total = (dinero * interes / 100);
-	printf("\nEl total de interes es: %.2f", total);
+
 	return 0;
 }

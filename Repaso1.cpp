@@ -4,18 +4,31 @@
 #include <stdio.h>
 
 
-//Ejercicio de calcular la edad de una persona sin usar estructuras de control
+//Ejercicio de suma de tres variables enteras
 int main() {
-	int anioNacimiento = 0;
-	int edad = 0;
-	int result = 0;
-	//Esto sirve para que no se muestre el warning de scanf
+	printf("\nEjercicio de suma de tres variables enteras");// Imprime el título del ejercicio
+	printf("\nResultado 1");
+	printf("\n============================================"); // Imprime una línea de separación
+	int a = 5;
+	int b = 7;
+	int c = 9;
+	int suma = 0;
+	suma = a + b + c; // Suma de las variables a, b y c
+	printf("\nLa suma de %d, %d y %d es: %d\n", a, b, c, suma);// Imprime el resultado de la suma
+	printf("\nResultado 2");
+	printf("\n============================================"); 
+	 a = 0;
+	 b = 0;
+	 c = 0;
+	printf("\nIngrese el valor de a: "); 
+	scanf("%d", &a);
+	printf("\nIngrese el valor de b: ");
+	scanf("%d", &b);
+	printf("\nIngrese el valor de c: "); 
+	scanf("%d", &c); 
+	suma = a + b + c; // Suma de las variables a, b y c ingresadas por el usuario
+	printf("\nLa suma de %d, %d y %d es: %d\n", a, b, c, suma); // Imprime el resultado de la suma ingresada por el usuario
 
-	printf("Hola\n");
-	printf("Por favor de introducir el anio en el que nacio: ");
-	scanf("%d", &anioNacimiento);
-	edad = 2025 - anioNacimiento;
-	printf("\nSi usted nacio en %d y este anio cumple %d anios\n",anioNacimiento,edad );
-	
+
 	return 0;
 }

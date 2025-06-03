@@ -3,14 +3,14 @@
 #define _CRT_SECURE_NO_WARNINGS
 #include <stdio.h>
 
-//Ejercicios de Farenheit a Celsius 
+//Ejercicio del nombre del usuario y saludo
 int main() {
 	
-	float farenheit = 0.0 , celsius = 0.0;
-	printf("\nIntroduce la temperatura en grados Farenheit: ");
-	scanf("%f", &farenheit);
-	celsius = (farenheit - 32) * 5/9 ;
-	printf("\nLa temperatura en grados Celsius es: %.2f\n", celsius);
-	return 0;
+	char nombre[30];
+	
+	printf("\nHola bienvenido!!");
+	printf("\nPor favor, introduce tu nombre: ");
+	scanf("%[^\n]", nombre);
+	printf("\nHola %s, vamos a hacer un repaso de C.\n", nombre);
 
 }

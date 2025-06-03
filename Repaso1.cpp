@@ -3,71 +3,31 @@
 #define _CRT_SECURE_NO_WARNINGS
 #include <stdio.h>
 
-//Ejercicios de estructuras de control con IF, IF-ELSE
+//Ejercicios de estructuras de control IF (Entradas de cine)
 int main() {
 
-	int num1 = 0;
-	int num2 = 0;
+	float entradaCine = 7;
+	int edadCliente = 0;
+	int resultadoLectura = 0;//Procedimiento sencillo de lectura, solo sirve para repasar, solo sirve si se ingresan primero numeros, luego lo demas ya no importa
 	
-	//Ejercicio 1
-	printf("\nEs mayor a 100 o no");
-	printf("\nIntroducir el numero porfavor: ");
-	scanf("%d", &num1);
+	printf("\nIngresar la edad del cliente: ");
+	 resultadoLectura = scanf("%d", &edadCliente);
+	 if (resultadoLectura == 0) {
+		 printf("No se realizo correctamente la lectura, devolviendo un balor de %d", resultadoLectura);
+	 }
+	 
 
-	if (num1 > 100) {
-		printf("\nEl numero es mayor que 100\n");
-	}
-
-	num1 = 0;
-	
-	//Ejercicio 2
-	printf("\nEs divisible o no");
-	printf("\nIntroducir el numero nuevamente: ");
-	scanf("%d", &num1);
-
-	printf("\nIntroducir el otro numero porfavor: ");
-	scanf("%d", &num2);
-
-	if (num1 % num2 == 0) {
-		printf("\nEs divisible el numero %d entre el numero %d\n", num1, num2);
-	}
-	num1 = 0;
-	//Ejercicio 3
-	printf("\nEl numero es par y es multiplo de 3\n");
-	printf("\nIntroducir el numero nuevamente: ");
-	scanf("%d", &num1);
-
-	if (num1 % 2 == 0) {
-		printf("\nEl numero es par");
-		if (num1 % 3 == 0) {
-			printf("\nY tambien es multiplo de 3\n");
-		}
-	}
-	
-	//Ejercicio 4
-	num1 = 0;
-	num2 = 0;
-	printf("\nCual es mayor?\n");
-
-	printf("\nIngresar nuevamente el numero 1: ");
-	scanf("%d", &num1);
-	
-
-	printf("\nIngresar nuevamente el numero 2: ");
-	scanf("%d", &num2);
-	
-
-	if (num1 > num2) {
-		printf("\nEl numero %d es mayor a %d ", num1, num2);
-	} 
-
-	if (num2 > num1) {
-		printf("\nEl numero %d es mayor a %d ", num2, num1);
-	}
-
-	if (num1 == num2) {
-		printf("\nEl numero %d es igual a %d ", num1, num2);
-	}
+	 else {
+		 if (edadCliente < 5) {
+			 entradaCine -= (entradaCine * .60);
+		 }
+		 if (edadCliente > 60) {
+			 entradaCine -= (entradaCine * .55);
+		 }
+		 printf("\nEl precio de su entrada de cine es %.2f", entradaCine);
+	 }
+	entradaCine = 0;
+	edadCliente = 0;
 
 
 	return 0;

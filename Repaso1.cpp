@@ -2,60 +2,42 @@
 //
 #define _CRT_SECURE_NO_WARNINGS
 #include <stdio.h>
-#include <math.h>
 
-//Ejercicios de estructuras de control IF (Numero menor a Numero mayor)
+
+
 int main() {
 
-	int num1 = 0;
-	int num2 = 0;
-	int num3 = 0;
-	int numeroMenor = 0;
-	int numeroMedio = 0;
-	int numeroMayor = 0;
-
-	printf("\nIngresar numero 1: ");
-	scanf("%d", &num1);
-	printf("\nIngresar numero 2: ");
-	scanf("%d", &num2);
-	printf("\nIngresar numero 3: ");
-	scanf("%d", &num3);
-
-	numeroMenor = num1;
-	numeroMedio = num2;
-	numeroMayor = num3;
-	//num1 = 5 num2 = 4 num3 = 2
+	char Caracter;
 	
+	printf("\nIngresar un caracter para determinar si es vocal: ");
+	Caracter = getchar();
+	
+	
+	switch (Caracter)
+	{
+		case 'a':case 'e':case'o': case'i': case'u':
+		case 'A':case 'E':case'O': case'I': case'U': {
+			printf("\nEs vocal carallo");
+			break;
+		}
+		default: {
+			printf("\nNo es vocal");
+			break;
+		}
 
-	if (numeroMenor > numeroMedio && numeroMedio > numeroMayor) {
-		numeroMayor = num1;
-		numeroMenor = num3;
+
 	}
-	if (numeroMedio > numeroMayor && numeroMayor < numeroMenor) {
-		numeroMayor = num2;
-		numeroMedio = num1;
-		numeroMenor = num3;
+	//Con recurso de if / else
+	if	(Caracter == 'a'|| Caracter == 'e'
+		|| Caracter == 'i'|| Caracter == 'o' || Caracter == 'u'
+		|| Caracter == 'A' || Caracter == 'E'|| Caracter == 'I'
+		|| Caracter == 'O' || Caracter == 'U') {
+
+		printf("\nEs vocal carallo otra vez");
+		
 	}
-	if (numeroMenor > numeroMayor && numeroMenor > numeroMedio && numeroMedio < numeroMayor) {
-		numeroMayor = num1;
-		numeroMedio = num3;
-		numeroMenor = num2;
-
+	else {
+		printf("\nNo es vocal carallo otra vez");
 	}
-	if (numeroMenor > numeroMedio) {
-		numeroMedio = num1;
-		numeroMenor = num2;
-	}
-	if (numeroMedio > numeroMayor) {
-		numeroMedio = num3;
-		numeroMayor = num2;
-	}
-
-	printf("Numero Menor: %d, Numero Medio: %d, Numero Mayor: %d", numeroMenor, numeroMedio, numeroMayor);
-
-
-
-
-
 	return 0;
 }

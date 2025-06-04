@@ -4,38 +4,58 @@
 #include <stdio.h>
 #include <math.h>
 
-//Ejercicios de estructuras de control IF (Cantidad de numeros par y suma de digitos en numero de solo dos cifras)
+//Ejercicios de estructuras de control IF (Numero menor a Numero mayor)
 int main() {
-	int ResultadoResto = 0;
-	int ResultadoDivisiion = 0;
-	int numero = 0;
-	int resultado = 0; //Lectura
-	int SumaDigitos = 0;
-	int CantidadPares = 0;
-	printf("\nIngresar el numero: ");
-	resultado = scanf("%d", &numero);
+
+	int num1 = 0;
+	int num2 = 0;
+	int num3 = 0;
+	int numeroMenor = 0;
+	int numeroMedio = 0;
+	int numeroMayor = 0;
+
+	printf("\nIngresar numero 1: ");
+	scanf("%d", &num1);
+	printf("\nIngresar numero 2: ");
+	scanf("%d", &num2);
+	printf("\nIngresar numero 3: ");
+	scanf("%d", &num3);
+
+	numeroMenor = num1;
+	numeroMedio = num2;
+	numeroMayor = num3;
+	//num1 = 5 num2 = 4 num3 = 2
 	
-	if (resultado == 0) {
-		printf("\nError de lectura");
+
+	if (numeroMenor > numeroMedio && numeroMedio > numeroMayor) {
+		numeroMayor = num1;
+		numeroMenor = num3;
 	}
-	else
-	{	//Verificar que el numero sea de dos digitos
-		if (numero > 9 && numero < 99) {
-			ResultadoResto = numero % 10;
-			ResultadoDivisiion = numero / 10;
-			SumaDigitos = ResultadoDivisiion + ResultadoResto;
-			printf("\nLa suma de los digitos del numero %d",SumaDigitos);
-			if (ResultadoResto % 2 == 0) {
-				CantidadPares++;
-			}
-			if (ResultadoDivisiion % 2 == 0) {
-				CantidadPares++;
-			}
-			printf("\nLa cantidad de numeros par que tiene el numero son: %d", CantidadPares);
-		}
-		else {
-			printf("\nEl numero no es dos cifras");
-		}
+	if (numeroMedio > numeroMayor && numeroMayor < numeroMenor) {
+		numeroMayor = num2;
+		numeroMedio = num1;
+		numeroMenor = num3;
 	}
+	if (numeroMenor > numeroMayor && numeroMenor > numeroMedio && numeroMedio < numeroMayor) {
+		numeroMayor = num1;
+		numeroMedio = num3;
+		numeroMenor = num2;
+
+	}
+	if (numeroMenor > numeroMedio) {
+		numeroMedio = num1;
+		numeroMenor = num2;
+	}
+	if (numeroMedio > numeroMayor) {
+		numeroMedio = num3;
+		numeroMayor = num2;
+	}
+
+	printf("Numero Menor: %d, Numero Medio: %d, Numero Mayor: %d", numeroMenor, numeroMedio, numeroMayor);
+
+
+
+
+
 	return 0;
 }

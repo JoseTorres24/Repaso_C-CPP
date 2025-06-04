@@ -33,7 +33,9 @@ int main() {
 			}
 			printf("\nLa cantidad de numeros par que tiene el numero son: %d", CantidadPares);
 		}
-		printf("\nEl numero no es dos cifras");
+		else {
+			printf("\nEl numero no es dos cifras");
+		}
 	}
 	return 0;
 }

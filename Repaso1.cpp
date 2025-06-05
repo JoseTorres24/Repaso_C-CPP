@@ -6,59 +6,35 @@
 
 
 
-//Ejercicio de calcular el area (Switch)
+//Ejercicio de calcular la paga de un trabajador (IF, IF-ELSE)
 int main() {
 	
-	float baseMayor = 0, baseMenor = 0,Altura = 0;
-	float area = 0;
-	int seleccion = 0;
-	printf("\n\t\t\t\tCALCULO DE AREAS");
-	printf("\n\t\t\t\t===================================");
-	printf("\n\t\t\t\t1.- Calcular area de triangulo");
-	printf("\n\t\t\t\t2.- Calcular area de trapecio");
-	printf("\n\t\t\t\t3.- Calcular area de rectangulo");
-	printf("\n\t\t\t\tSeleccionar opcion: ");
-	scanf("%d", &seleccion);
+	float horasTrabajadas = 0;
+	float horaPagada = 0;
+	float paga = 0;
 
-	switch (seleccion)
-	{
-		case 1: { 
+	printf("\nIngresar lo que se pagara por hora: ");
+	scanf("%f", &horaPagada);
+	printf("\nIngresar cantidad de horas trabajadas: ");
+	scanf("%f", &horasTrabajadas);
 
-			printf("\nIngresar altura: ");
-			scanf("%f", &Altura);
-			printf("\nIngresar la base: ");
-			scanf("%f", &baseMayor);
-
-			area = baseMayor * Altura / 2;
-			break;
+	if(horasTrabajadas <= 40 || horasTrabajadas > 0){
+		paga = horasTrabajadas * horaPagada;
+	}
+	else {
+		if (horasTrabajadas > 40 || horasTrabajadas < 50)
+		{
+			paga = horasTrabajadas* (horaPagada*(1.5));
 		}
-		case 2: {
-			printf("\nIngresar base menor: ");
-			scanf("%f", &baseMenor);
-			printf("\nIngresar base mayor: ");
-			scanf("%f", &baseMayor);
-			printf("\nIngresar altura: ");
-			scanf("%f", &Altura);
+		if (horasTrabajadas >= 50) {
+			paga = horasTrabajadas * (horaPagada * (2.0));
 
-			area = (baseMenor + baseMayor * (Altura)) / 2;
-			break;
-		}
-		case 3: {
-			printf("\nIngresar base: ");
-			scanf("%f", &baseMayor);
-			printf("\nIngresar altura: ");
-			scanf("%f", &Altura);
-
-			area = baseMayor * Altura;
-			
-			break;
-		}
-
-		default: {
-			break;
 		}
 	}
-	printf("\nEl valor del area de la figura seleccionada: %.2f\n", area);
+
+	printf("\nLa paga del trabajador es: %.2f\n", paga);
+
+
 	system("pause");
 	return 0;
 }

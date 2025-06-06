@@ -4,58 +4,61 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
-#define MAX_ARRAY 10
+#define NUM_ADIVINAR 50
 
-//Ejercicios de arreglos con estructuras repetitivas
+
+//Ejercicios de arreglos con estructuras repetitivas (Adivinar el numero)
 //Sencillos
 
 int main() {
-	
-	int num[10] = {0};
-	int sumaNums = 0;
-	float prom = 0;
-	int menor = 0;
-	int mayor = 0;
-	int i = 0;
-	int j = 0;
-	int aux = 0;
+	int atinado = 0;
+	int intentos = 0;
+	while (atinado != NUM_ADIVINAR) {
 
-	for (i = 0; i < 10; i++) {
-		printf("\nIngresar numero %d: ",i + 1);
-		while (scanf("%d", &num[i]) != 1) { 
-			while (getchar() != '\n'); 
-			system("cls");
-			printf("\nIngresar numero: ");
-		}
-		system("cls");
-	}
-	system("cls");
 
-	for (i = 0; i < 10; i++) {
-		sumaNums += num[i];
-	}
-
-	prom = sumaNums / (10.0f);
-	//Ordenamiento de valores de menor a mayor (metodo de la burbuja)
-	for (i = 0; i < 10; i++) {
-		for (j = 0; j < i; j++) {
-			if (num[i] > num[j]) {
-				aux = num[i];
-				num[i] = num[j];
-				num[j] = aux;
+			printf("\nIntenta adivniar el numero (1 - 100): ");
+			while (scanf("%d",&atinado) != 1)
+			{
+				while (getchar() != '\n');
+				system("cls");
+				printf("\nIngresa valores correctos\n");
+				system("pause");
+				system("cls");
+				printf("\nIntenta adivniar el numero (1 - 100): ");
 			}
-		}
+			if (atinado < 1 || atinado > 100) {
+				printf("\nEl numero no es menor a 1, ni mayor a 100 ");
+				system("pause");
+				system("cls");
+				intentos++;
+			}
+
+			if (atinado < NUM_ADIVINAR) {
+				printf("\nEl numero es mas grande que el otro\n");
+				system("pause");
+				system("cls");
+				intentos++;
+			}
+
+			if (atinado > NUM_ADIVINAR) {
+				printf("\nEl numero es pequeño que el otro\n");
+				system("pause");
+				system("cls");
+				intentos++;
+			}
+			
 	}
-	//Mostrar valores
-	printf("\n\t\t\t\t\tImpresion de valores\n");
-	printf("\n\t\t\t=======================================\n");
-	printf("\n\t\t\tLa suma de todos los numeros: %d", sumaNums);
-	printf("\n\t\t\tEl promedio de los numeros  : %.2f", prom);
-	printf("\n\t\t\tEl numero mayor del arreglo : %d", num[0]);
-	printf("\n\t\t\tEl numero menor del arreglo : %d", num[9]);
-	printf("\n\n\n");
+	if (intentos < 5) {
+		printf("\nEnhorabuena lo adivinaste\n");
+	}
 
+	if (intentos >= 5  && intentos < 10 ) {
+		printf("\nNo lo hiciste nada mal eh\n");
+	}
 
+	if (intentos >= 10) {
+		printf("\nEsta bien manin, tienes que mejorar\n");
+	}
 
 
 	system("pause");

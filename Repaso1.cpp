@@ -75,7 +75,10 @@ int main() {
 				}
 				for (i = 0; i < y; i++) {
 					resultado = resultado * x;
+					printf("\nx^%d = %d\n",i + 1,resultado);
+					system("pause");
 				}
+				
 
 				break;
 			}
@@ -93,7 +96,7 @@ int main() {
 			system("cls");
 			printf("\nDesea continuar (1 -> Si) (0 -> No): ");
 		}
-		resultado = 0;
+		resultado = 1;
 		 
 	}
 

@@ -3,63 +3,56 @@
 #define _CRT_SECURE_NO_WARNINGS
 #include <stdio.h>
 #include <stdlib.h>
-#include <math.h>
-#define NUM_ADIVINAR 50
 
 
-//Ejercicios de arreglos con estructuras repetitivas (Adivinar el numero)
-//Sencillos
+//Ejercicios estructuras repetitivas (Avanzados 1)
+
 
 int main() {
-	int atinado = 0;
-	int intentos = 0;
-	while (atinado != NUM_ADIVINAR) {
+	int mostrarNumeros = 1;
+	int Grupo = 0;
+	int contador = 0;
+	int continuar = 1;
+	while (continuar != 0) {
+		contador = 0;
+		printf("\nGrupo %d\n",Grupo + 1);
+		while (contador != 20)
+		{
+			printf("\n%d",mostrarNumeros);
+			mostrarNumeros++;
+			contador++;
 
+		}
+		Grupo++;
 
-			printf("\nIntenta adivniar el numero (1 - 100): ");
-			while (scanf("%d",&atinado) != 1)
+		printf("\n");
+		system("pause");
+		system("cls");
+
+		if (contador == 20) {
+
+			if (Grupo == 50) {
+				printf("\nSe han Mostrado todos los numeros\n");
+				system("pause");
+				system("cls");
+				continuar = 0;
+				contador = 0;
+				Grupo = 0;
+				return 0;
+
+			}
+			else
 			{
-				while (getchar() != '\n');
-				system("cls");
-				printf("\nIngresa valores correctos\n");
-				system("pause");
-				system("cls");
-				printf("\nIntenta adivniar el numero (1 - 100): ");
-			}
-			if (atinado < 1 || atinado > 100) {
-				printf("\nEl numero no es menor a 1, ni mayor a 100 ");
-				system("pause");
-				system("cls");
-				intentos++;
+				printf("\n\nQuiere que se muestre el siguiente grupo de numeros (1 - Si)(0 - No): ");
+				while (scanf("%d", &continuar) != 1) {
+					while (getchar() != '\n');
+					system("cls");
+					printf("\nQuiere que se muestre el siguiente grupo de numeros (1 - Si)(0 - No): ");
+				}
 			}
 
-			if (atinado < NUM_ADIVINAR) {
-				printf("\nEl numero es mas grande que el otro\n");
-				system("pause");
-				system("cls");
-				intentos++;
-			}
-
-			if (atinado > NUM_ADIVINAR) {
-				printf("\nEl numero es pequeño que el otro\n");
-				system("pause");
-				system("cls");
-				intentos++;
-			}
-			
+		}
 	}
-	if (intentos < 5) {
-		printf("\nEnhorabuena lo adivinaste\n");
-	}
-
-	if (intentos >= 5  && intentos < 10 ) {
-		printf("\nNo lo hiciste nada mal eh\n");
-	}
-
-	if (intentos >= 10) {
-		printf("\nEsta bien manin, tienes que mejorar\n");
-	}
-
 
 	system("pause");
 	system("cls");

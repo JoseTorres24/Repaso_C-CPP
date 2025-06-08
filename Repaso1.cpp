@@ -1,89 +1,59 @@
-#define _CRT_SECURE_NO_WARNINGS
 
+
+#define _CRT_SECURE_NO_WARNINGS
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
 
-//Ejercicios Avanzados de estructuras repetitivas (El mas Repetido)
-int main() {
-	
-	int numero = 1;
-	int numerosAgregados = 0;
-	int numeroMasRep = 0;
-	int mayor = 0; //Variable auxiliar para poder encontrar el numero mayor del arreglo
-	//desordenado que se supone que me dara la posicion del arreglo en los dos arreglos dinamicos, 
-	int cantidadVeces = 0;
-	int* numeros = NULL;
-	int* cantidadRepetidos = NULL; //Muchos valores se repetiran pero no se como hacerlo de otra manera
-	int* temporal = NULL; // para poder reasignar la memoria
-	int i = 0;
-	int j = 0;// Realmente no se si puede hacer con un solo recorrido, no soy tan bueno ;c 
+int main()
+{
+    unsigned long long* numerosFactorial = NULL;
+    unsigned long long aux = 0;
+    unsigned long long resp = 1;
+    unsigned long long* temp = NULL;
+    unsigned long long elementosFactorial = 0;
+    int numero = 1;
+    int i = 0;
 
-	// vamo a pone un espacio determinado de memoria basandonos en un arreglo int *
-	numeros = (int*)malloc(sizeof(int));
+    numerosFactorial = (unsigned long long*)malloc(sizeof(unsigned long long));
 
-	while (numero != 0) {
-		while (scanf("%d", &numero) != 1) {
-			while (getchar() != '\n');
-			system("cls");			
-		}
-		if (numero == 0) {
-			printf("\nSaliendo del programa, se mostraran los datos siguientes...\n");
-		}
-		else { 
-			system("cls");
+    printf("\nIngresar el numero: ");
+    while (scanf("%d", &numero) != 1) {
+        while (getchar() != '\n');
+        system("cls");
+        printf("\nIngresar el numero: ");
+        continue;
+    }
 
-			// Recolocamos la memoria pero solo tempor al porque luego perdera esa memoria de cierta manera para poder agregar u nuevo valor a numeros
-			temporal = (int*)realloc(numeros, (numerosAgregados + 1) * sizeof(int));
-			if (temporal == NULL) {
-				printf("\nError: No se pudo asignar memoria.\n");//si no se asigna memoria correctamente
-				free(numeros);
-				return -1;
-			}
-			numeros = temporal; //le damos el espacio de temporal a numeros para que pueda tener otro element0
-			//En su arreglo de  elementos dinamico
+    if (numero == 0) {
+        resp = 1;
+        aux = 0;
+    }
+    else {
+        aux = numero;
+        while (numero != 0)
+        {
+            temp = (unsigned long long*)realloc(numerosFactorial, (elementosFactorial + 1) * sizeof(unsigned long long));
+            if (temp == NULL) {
+                printf("\nError: No se pudo asignar memoria.\n");
+                free(numerosFactorial);
+                return -1;
+            }
+            numerosFactorial = temp;
 
-			numeros[numerosAgregados] = numero; //Agregamos un elemento al arreglo
-			numerosAgregados++; // y aumentamos
-			// Mostramos el arreglo realizar las operaciones 
-			for (i = 0; i < numerosAgregados; i++) {
-				printf("%d\t", numeros[i]);
-				
-			}
-		}
-	}
-	cantidadRepetidos = (int*)malloc(numerosAgregados*sizeof(int));
+            numerosFactorial[elementosFactorial++] = numero;
+            numero--;
+        }
+        for (i = 0; i < elementosFactorial; i++) {
+            resp *= numerosFactorial[i];
+        }
+    }
+    printf("\nEl factorial de %llu es %llu\n", aux, resp);
 
-	for (i = 0; i < numerosAgregados; i++) {
-		cantidadVeces = 0;
-		for (j = 0; j < numerosAgregados; j++) {
-			if (numeros[j] == numeros[i]) {
-				cantidadVeces++;
-			}
-		}
-		cantidadRepetidos[i] = cantidadVeces;
-	}
-	for (i = 0; i < numerosAgregados; i++) {
-		if (mayor < cantidadRepetidos[i]) {
-			mayor = cantidadRepetidos[i];
-			numeroMasRep = i;
-		}
-	}
+    free(numerosFactorial);
+    numerosFactorial = NULL;
 
-	printf("\nEl numeros mas repetido es el %d y se ha escrito %d\n",(numeros[numeroMasRep]),cantidadRepetidos[numeroMasRep]);
+    system("pause");
+    system("cls");
 
-
-	//XD creo que complique el ejercicio
-	free(numeros);
-	numeros = NULL;
-
-	free(cantidadRepetidos);
-	cantidadRepetidos = NULL;
-	
-
-	system("pause");
-	system("cls");
-	
-	return 0;
+    return 0;
 }
-//Me dio en la madre chat-gpt, pero con orgullo

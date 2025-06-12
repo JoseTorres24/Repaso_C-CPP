@@ -1,56 +1,99 @@
-
-
 #define _CRT_SECURE_NO_WARNINGS
 #include <stdio.h>
 #include <stdlib.h>
-
+#include <time.h>
+#include <math.h>
+// Ejercicios Avanzados de Estructuras repetitivas (Metodo de Aproximaciones sucesivas) Raiz
 int main()
 {
-    unsigned long long* numerosFactorial = NULL;
-    unsigned long long aux = 0;
-    unsigned long long resp = 1;
-    unsigned long long* temp = NULL;
-    unsigned long long elementosFactorial = 0;
-    int numero = 1;
-    int i = 0;
+    clock_t inicio = 0;
+    clock_t final = 0;
+    float initialD = 0;
+    int iteraciones = 0;
+    float raiz = 0;
+    float diferencia = 0;
+    float raizAproximacion = 0;
+    double tiempo_transcurrido = 0;
+    do 
+    {
+        printf("\nIntroduzca el valor para obtener su raiz: ");
+        while (scanf("%f", &raiz) != 1) {
+            while (getchar() != '\n');
+            system("cls");
+            printf("\nIntroduzca el valor para obtener su raiz: ");
 
-    numerosFactorial = (unsigned long long*)malloc(sizeof(unsigned long long));
+        }
 
-    printf("\nIngresar el numero: ");
-    while (scanf("%d", &numero) != 1) {
-        while (getchar() != '\n');
+        printf("\nIntroduzca el valor inicial: ");
+        while (scanf("%f", &initialD) != 1) {
+            while (getchar() != '\n');
+            system("cls");
+            printf("\nIntroduzca el valor inicial: ");
+            continue;
+        }
         system("cls");
-        printf("\nIngresar el numero: ");
-        continue;
     }
+    while ((initialD > raiz) || raiz < 0);
 
-    if (numero == 0) {
-        resp = 1;
-        aux = 0;
-    }
-    else {
-        aux = numero;
-        while (numero != 0)
-        {
-            temp = (unsigned long long*)realloc(numerosFactorial, (elementosFactorial + 1) * sizeof(unsigned long long));
-            if (temp == NULL) {
-                printf("\nError: No se pudo asignar memoria.\n");
-                free(numerosFactorial);
-                return -1;
+    inicio = clock();
+    if (initialD < raiz) {
+        //Primer rondeo 
+        while (raizAproximacion <= raiz) {
+            raizAproximacion = initialD * initialD;
+            if (raizAproximacion == raiz) {
+                break;
             }
-            numerosFactorial = temp;
+            else {
 
-            numerosFactorial[elementosFactorial++] = numero;
-            numero--;
+                initialD++;
+
+            }
+         
+            iteraciones++;
         }
-        for (i = 0; i < elementosFactorial; i++) {
-            resp *= numerosFactorial[i];
+        //Segundo Rondeo
+        while (raizAproximacion >= raiz) {
+            raizAproximacion = initialD * initialD;
+            if (raizAproximacion == raiz) {
+                break;
+            }
+            else {
+
+                initialD -= 0.1;
+            }
+            
+            iteraciones++;
+        }
+        //TercerRondeo
+        while (raizAproximacion <= raiz) {
+            raizAproximacion = initialD * initialD;
+            if (raizAproximacion == raiz) {
+                break;
+            }
+            else {
+
+                initialD += 0.001;
+
+            }
+            
+            iteraciones++;
         }
     }
-    printf("\nEl factorial de %llu es %llu\n", aux, resp);
 
-    free(numerosFactorial);
-    numerosFactorial = NULL;
+    
+
+
+    printf("\n\n Los Resultado obtenidos son los siguientes\n\n");
+    printf("\nCantidad de iteraciones: %d ",iteraciones);
+    printf("\nValor de resultado de multiplicacion de raices aproximada: %.2f", raizAproximacion);
+    printf("\nValor de raiz aproximado: %.2f\n\n",initialD);
+   
+    final = clock();
+    
+    tiempo_transcurrido = (double)(final - inicio) / CLOCKS_PER_SEC;
+
+    printf("\n\nEl tiempo de ejecucion es: %lf segundos\n\n", tiempo_transcurrido);
+
 
     system("pause");
     system("cls");

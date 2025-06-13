@@ -1,102 +1,78 @@
 #define _CRT_SECURE_NO_WARNINGS
 #include <stdio.h>
 #include <stdlib.h>
-#include <time.h>
-#include <math.h>
-// Ejercicios Avanzados de Estructuras repetitivas (Metodo de Aproximaciones sucesivas) Raiz
+#include <string.h>
+//Guardado para otras mas adelantes
+/*
+        while (scanf("%d", &numAnio) != 1) {
+            while ((c = getchar()) != EOF && c != '\n');
+            system("cls");
+            printf("\nIngresar anio de nacimiento: ");
+        }
+
+*/
+// Ejercicios Avanzados de Estructuras repetitivas (Numero Magico)
+
 int main()
 {
-    clock_t inicio = 0;
-    clock_t final = 0;
-    float initialD = 0;
-    int iteraciones = 0;
-    float raiz = 0;
-    float diferencia = 0;
-    float raizAproximacion = 0;
-    double tiempo_transcurrido = 0;
-    do 
+    char c;
+    int numDia = 0;
+    int numMes = 0;
+    int numAnio = 0;
+    int sumaFecha = 0;
+    int sumaNumeroFecha[4] = { 0 };
+    int i = 0;
+    int numeroMagico = 0;
+    int dias_Meses[12] = { 31,28,31, 30,31,30,31,31,30,31,30,31};
+    do
     {
-        printf("\nIntroduzca el valor para obtener su raiz: ");
-        while (scanf("%f", &raiz) != 1) {
-            while (getchar() != '\n');
+        printf("\nIngresar mes de nacimiento: ");
+        while( scanf("%d",&numMes) != 1){
+            while ((c = getchar()) != EOF && c != '\n');
             system("cls");
-            printf("\nIntroduzca el valor para obtener su raiz: ");
-
+            printf("\nIngresar mes de nacimiento: ");
         }
 
-        printf("\nIntroduzca el valor inicial: ");
-        while (scanf("%f", &initialD) != 1) {
-            while (getchar() != '\n');
+    } while (numMes < 1 || numMes > 12);
+    do
+    {
+        printf("\nIngresar dia de nacimiento: ");
+        while (scanf("%d", &numDia) != 1) {
+            while ((c = getchar()) != EOF && c != '\n');
             system("cls");
-            printf("\nIntroduzca el valor inicial: ");
-            continue;
+            printf("\nIngresar dia de nacimiento: ");
         }
-        system("cls");
+
+    }while (numDia < 1 || numDia > dias_Meses [numMes - 1]);
+    do
+    {
+        printf("\nIngresar anio de nacimiento: ");
+        while (scanf("%d", &numAnio) != 1) {
+            while ((c = getchar()) != EOF && c != '\n');
+            system("cls");
+            printf("\nIngresar anio de nacimiento: ");
+        }
+    } while (numAnio < 0);
+
+    sumaFecha = numDia + numMes + numAnio;
+
+    while (sumaFecha > 0) {
+
+        sumaNumeroFecha[i] = sumaFecha % 10;
+        sumaFecha /= 10;
+        numeroMagico += sumaNumeroFecha[i];
+        i++;
     }
-    while ((initialD > raiz) || raiz < 0);
-
-    inicio = clock();
-    if (initialD < raiz) {
-        //Primer rondeo 
-        while (raizAproximacion <= raiz) {
-            raizAproximacion = initialD * initialD;
-            if (raizAproximacion == raiz) {
-                break;
-            }
-            else {
-
-                initialD++;
-
-            }
-         
-            iteraciones++;
-        }
-        //Segundo Rondeo
-        while (raizAproximacion >= raiz) {
-            raizAproximacion = initialD * initialD;
-            if (raizAproximacion == raiz) {
-                break;
-            }
-            else {
-
-                initialD -= 0.1;
-            }
-            
-            iteraciones++;
-        }
-        //TercerRondeo
-        while (raizAproximacion <= raiz) {
-            raizAproximacion = initialD * initialD;
-            if (raizAproximacion == raiz) {
-                break;
-            }
-            else {
-
-                initialD += 0.001;
-
-            }
-            
-            iteraciones++;
-        }
-    }
-
+    printf("\nEsta es tu fecha de cumpleanios\n");
+    printf("%d\t%d\t%d\n", numDia, numMes, numAnio);
+    printf("\nEste es tu numero magico: %d\n",numeroMagico);
     
 
 
-    printf("\n\n Los Resultado obtenidos son los siguientes\n\n");
-    printf("\nCantidad de iteraciones: %d ",iteraciones);
-    printf("\nValor de resultado de multiplicacion de raices aproximada: %.2f", raizAproximacion);
-    printf("\nValor de raiz aproximado: %.2f\n\n",initialD);
-   
-    final = clock();
-    
-    tiempo_transcurrido = (double)(final - inicio) / CLOCKS_PER_SEC;
 
-    printf("\n\nEl tiempo de ejecucion es: %lf segundos\n\n", tiempo_transcurrido);
 
 
     system("pause");
     system("cls");
-
     return 0;
 }
